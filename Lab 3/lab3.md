@@ -72,7 +72,17 @@ de exemplu :
 
 ex2.c 
 
-![Alt text](https://raw.githubusercontent.com/MituIustin/Operating-Systems/main/Lab%203/ex2.PNG)
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main()
+{
+	syscall(331, "salut");
+	return 0;
+}
+```
 
 ## pas 5 : Generam executabilul
 
