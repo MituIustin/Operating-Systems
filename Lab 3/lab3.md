@@ -131,8 +131,42 @@ pentru a regenera fisierele aferente
 
 modificam fisierul /sys/kern/sys_generic.c adaugand :
 
-![Alt text](https://raw.githubusercontent.com/MituIustin/Operating-Systems/main/Lab%203/img2.PNG)
-![Alt text](https://raw.githubusercontent.com/MituIustin/Operating-Systems/main/Lab%203/img3.PNG)
+```c
+int
+sys_copy(struct proc *p, void *v, register_t *retval)
+{
+	struct sys_copy_args *uap = v;
+
+	void *kdest = (void*) malloc(SCARG(uap, n), M_TEMP, M_WAITOK);
+
+	if(kdest == NULL)
+	{
+		*retval = 0;
+		return ENOMEM;
+	}
+
+	int eroare = copyin(SCARG(uap, src), kdest, SCARG(uap, n));
+
+	if(eroare != 0)
+	{
+		*retval = 0;
+		return eroare;
+	}
+
+	int eroare1 = copyout(kdest, SCARG(uap, dst), SCARG(uap, n));
+
+	if(eroare1 != 0)
+	{
+		*retval = 0;
+		return eroare;
+	}
+	
+	free(kdest, M_TEMP, SCARG(uap, n));
+	*retval = SCARG(uap, n);
+	return 0;
+}
+```
+
 
 ## pas 3 : Recompilam kernelul 
 
