@@ -203,8 +203,7 @@ void barrier_point(Barrier *barrier) {
     } else {
 
         barrier->count = 0;
-        sem_post(&barrier->sem);
-
+	
         for (int i = 1; i < barrier->total_threads; i++) {
             sem_post(&barrier->sem);
         }
@@ -248,4 +247,5 @@ int main() {
 
     return 0;
 }
+
 ```
