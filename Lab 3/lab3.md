@@ -32,7 +32,7 @@ Atentie, trebuie sa recompilati kernelul si sa reporniti sistemul de operare cu 
 modificam fisierul /sys/kern/syscalls.master adaugand :
 
 ```c
-331   STD      {sys_khello(const char *msg); }
+331   STD      { int sys_khello(const char *msg); }
 ```
 
 apoi apelam comanda :
