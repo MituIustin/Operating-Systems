@@ -91,10 +91,6 @@ int main(int argc, char *argv[])
             sprintf(offset_str, "%d", (i - 1) * 4096);
             char *argvv[] = {"collatz", argv[i], offset_str, NULL};
             execve("/home/iustin/Desktop/lab5/collatz", argvv, NULL);
-
-            // Aici este important să gestionați cazul în care execve() întoarce eroare
-            perror("execve");
-            exit(errno);
         }
     }
 
