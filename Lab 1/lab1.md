@@ -40,13 +40,14 @@ gcc hello.c -o hello
 	
 	
 # Pentru GDB
-	
-```sh_session
+
+ 
+```sh-session
 gcc -g -O0 hello.c -o hello
 ```
 
 
-```sh-session	
+```sh-session
 gdb ./hello
 ```
 	
