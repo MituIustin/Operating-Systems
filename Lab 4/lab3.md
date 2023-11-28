@@ -188,31 +188,36 @@ ex3.c
 #include <sys/wait.h>
 #include <errno.h>
 
-
 int main(int argc, char *argv[])
 {
+    pid_t pids[argc - 1]; // Aici am corectat dimensiunea array-ului pids
 
-	for(int i = 1; i <= argc; i++)
-	{
-        	pid_t pid = fork ();
-        	if ( pid < 0)
-                	return errno ;
-        	else if ( pid == 0)
-                	{
+    for (int i = 1; i < argc; i++) // Aici am schimbat condiția din <= în <
+    {
+        pids[i - 1] = fork();
+        if (pids[i - 1] < 0)
+        {
+            perror("fork");
+            exit(errno);
+        }
 
-                        	char * argvv [] = {"collatz", argv[i] , NULL };
-                        	execve ("/home/iustin/Desktop/lab4/collatz" , argvv , NULL);
+        if (pids[i - 1] == 0)
+        {
+            printf("Child pid: %d\n", (int)getpid());
+            char *argvv[] = {"collatz", argv[i], NULL};
+            execve("/home/iustin/Desktop/lab4/collatz", argvv, NULL);
+            
+        }
+    }
 
-                	}
-       		else
-               	 	{
+    for (int i = 0; i < argc - 1; i++) 
+    {
+        waitpid(pids[i], NULL, 0);
+    }
 
-                        	printf("Parent pid: %d\n", (int)getpid());
-                        	printf("Child pid: %d\n", (int)pid);
-                        	wait(NULL);
-                	}
-	}
-        return 0;
+    printf("Parent pid: %d\n", (int)getpid());
+    return 0;
 }
+
 ```
 
