@@ -6,6 +6,9 @@ si pid-ul copilului.
 
 ```ssh-session
 gcc ex1.c -o ex1
+```
+
+```ssh-session
 ./ex1
 ```
 
@@ -70,10 +73,10 @@ int main(void)
 Ipoteza Collatz spune ca plecand de la orice numar natural daca aplicam
 repetat urmatoarea operatie
 
-n = 
-\frac{n}{2} & \text{dacă } n \text{ este par} \\
-\frac{n}{3} + 1 & \text{dacă } n \text{ este impar}
-\end{cases}
+
+f(n) = n / 2 daca n este par
+f(n) = n * 3 + 1 daca n este impar
+
 
 sirul ce rezulta va atinge valoarea 1. Implementati un program care
 foloseste fork(2) si testeaza ipoteza generand sirul asociat unui numar
@@ -81,6 +84,9 @@ dat in procesul copil.
 
 ```ssh-session
 gcc ex2.c -o ex2
+```
+
+```ssh-session
 ./ex2 24
 ```
 
@@ -166,6 +172,9 @@ executia fiecare copil. Programul va demonstra acest comportament folosind funct
 
 ```ssh-session
 gcc ex3.c -o ex3
+```
+
+```ssh-session
 ./ex3 24 12 3 4 7 8
 ```
 
