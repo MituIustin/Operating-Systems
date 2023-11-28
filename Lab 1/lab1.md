@@ -39,16 +39,16 @@ gcc hello.c -o hello
 	nm (nm ./hello)			-	simbolurile folosite de hello.c
 	
 	
-	Pentru GDB
+# Pentru GDB
 	
 ```sh_session
 gcc -g -O0 hello.c -o hello
 ```
 
+
 ```sh-session	
 gdb ./hello
 ```
-	
 	
 	
 	b symbol 	-	oprirea executiei la simbol
