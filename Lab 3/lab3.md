@@ -178,7 +178,19 @@ de exemplu :
 
 ex3.c 
 
-![Alt text](https://raw.githubusercontent.com/MituIustin/Operating-Systems/main/Lab%203/ex3.PNG)
+```c
+#include <sys/syscall.h>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	const char *msg = "Salut!";
+	syscall (332, msg);
+
+	return 0;
+}
+```
 
 ## pas 5 : Generam executabilul
 
