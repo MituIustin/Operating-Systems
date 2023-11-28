@@ -50,7 +50,17 @@ pentru a regenera fisierele aferente
 
 modificam fisierul /sys/kern/sys_generic.c adaugand :
 
-![Alt text](https://raw.githubusercontent.com/MituIustin/Operating-Systems/main/Lab%203/img1.PNG)
+```c
+int sys_khello(struct proc *p, void *v, register_t *retval)
+{
+    struct sys_khello *uap = v;
+    char *kermessage = (char*) malloc(100, M_TEMP, M_WAITOK);
+    copyinstr(SCARG(uap, msg), kermessage, 100, NULL);
+    printf("%s\n", kermessage);
+    free(kermessage, M_TEMP, 100);
+    return 0;
+}
+```
 
 ## pas 3 : Recompilam kernelul 
 
