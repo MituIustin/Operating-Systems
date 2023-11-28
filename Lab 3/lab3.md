@@ -179,15 +179,24 @@ de exemplu :
 ex3.c 
 
 ```c
-#include <sys/syscall.h>
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
 
 int main()
 {
-	const char *msg = "Salut!";
-	syscall (332, msg);
+	char source[] = "Salutare!";
+	char destination[20];
 
+	int ret_value = syscall(332, sourcem destionation, sizeof(source));
+
+	if(ret_value != sizeof(source)) {
+		perror("syscall");
+		return 1;
+	}
+	printf("%s\n", destination);
+	printf("%d \n", ret_value);
 	return 0;
 }
 ```
